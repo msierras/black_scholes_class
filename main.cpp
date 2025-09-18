@@ -7,6 +7,27 @@ enum class PayoffType{
     Put = -1 
 };
 
+class BlackScholes{
+    public:
+        /* BlackScholes constructor(s) */
+        BlackScholes(double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div = 0.0);
+        
+        /* Operator overloading function(s) */
+        double operator()(double vol); 
+
+    private:
+        std::array<double, 2> compute_norm_args(double vol);
+
+        double strike_, spot_, time_to_exp_;
+        PayoffType payoff_type_;
+        double rate_, div_; 
+
+
+    
+
+
+};
+
 
 int main(){
 
