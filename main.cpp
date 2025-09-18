@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <array>
 
 // PayoffType will represent a call (1) or a put (-1) 
 enum class PayoffType{
