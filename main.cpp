@@ -16,8 +16,11 @@ class BlackScholes{
         double operator()(double vol); 
 
     private:
-        std::array<double, 2> compute_norm_args(double vol);
+        // Using trailing underscores for private member variables and private member functions. 
+        
+        std::array<double, 2> compute_norm_args_(double vol);
 
+        
         double strike_, spot_, time_to_exp_;
         PayoffType payoff_type_;
         double rate_, div_; 
