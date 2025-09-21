@@ -18,7 +18,7 @@ class BlackScholes{
     private:
         // Using trailing underscores for private member variables and private member functions. 
         
-        std::array<double, 2> compute_norm_args_(double vol);   // will calculate the d1 and 2 values, and return them in a fixed two-element std::array container.
+        std::array<double, 2> compute_norm_args_(double vol);   // will calculate the d1 and d2 values, and return them in a fixed two-element std::array container.
 
         double strike_, spot_, time_to_exp_;
         PayoffType payoff_type_;
