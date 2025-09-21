@@ -23,12 +23,13 @@ class BlackScholes{
         double strike_, spot_, time_to_exp_;
         PayoffType payoff_type_;
         double rate_, div_; 
-
-
-    
-
-
 };
+
+// Implementing the constructor
+BlackScholes::BlackScholes(double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div) : strike_{strike}, spot_{spot}, time_to_exp_{time_to_exp}, payoff_type_{payoff_type}, rate_{rate}, div_{div} {};
+
+
+
 
 
 int main(){
