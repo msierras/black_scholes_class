@@ -25,7 +25,7 @@ class BlackScholes{
         double rate_, div_; 
 };
 
-// Implementing the constructor
+// Implementing the BlackScholes class constructor
 BlackScholes::BlackScholes(double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div) : strike_{strike}, spot_{spot}, time_to_exp_{time_to_exp}, payoff_type_{payoff_type}, rate_{rate}, div_{div} {};
 
 
