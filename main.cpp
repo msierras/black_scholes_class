@@ -2,6 +2,8 @@
 #include <array>
 #include <cmath>
 
+
+
 // 𝜙 = PayoffType will represent a call (1) or a put (-1) 
 enum class PayoffType{
     Call = 1,
@@ -63,7 +65,6 @@ double BlackScholes::operator()(double vol){
     }
 
 }
-
 
 
 
