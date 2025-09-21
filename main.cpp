@@ -9,10 +9,10 @@ enum class PayoffType{
 
 class BlackScholes{
     public:
-        /* BlackScholes constructor(s) */
+        /* BlackScholes constructor(s) prototype(s) */
         BlackScholes(double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div = 0.0);
         
-        /* Operator overloading function(s) */
+        /* Operator overloading function(s) prototype(s) */
         double operator()(double vol); 
 
     private:
