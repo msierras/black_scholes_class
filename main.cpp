@@ -1,6 +1,7 @@
 #include <iostream> 
 #include <array>
 #include <cmath>
+#include <numbers>
 
 
 
@@ -28,6 +29,7 @@ class BlackScholes{
         double rate_, div_; 
 };
 
+
 // Implementing the BlackScholes class constructor
 BlackScholes::BlackScholes(double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div) : strike_{strike}, spot_{spot}, time_to_exp_{time_to_exp}, payoff_type_{payoff_type}, rate_{rate}, div_{div} {};
 
@@ -52,7 +54,7 @@ double BlackScholes::operator()(double vol){
         };
 
         // Calculating nd_1 and nd_2 via the norm_cdf lambda expression we declared above 
-        double nd_1 = norm_cdf(phi * d2);   // N(d1)
+        double nd_1 = norm_cdf(phi * d1);   // N(d1)
         double nd_2 = norm_cdf(phi * d2);   // N(d2)
 
         // Computing the discount factor from T back to time t (time_to_exp_ = T - t) 
@@ -67,10 +69,35 @@ double BlackScholes::operator()(double vol){
 }
 
 
+std::array<double, 2> BlackScholes::compute_norm_args_(double vol){
+    double numer = log(spot_ / strike_) + (rate_ - div_ + 0.5 * vol * vol) * time_to_exp_;
+    
+    // calculating d1 and d2
+    double d1 = numer / (vol * sqrt(time_to_exp_));
+    double d2 = d1 - vol * sqrt(time_to_exp_);
+    
+    return std::array<double, 2>{d1, d2}; 
+}
+
+
 
 int main(){
 
+    double strike = 75.0;
+    double spot = 100.0;
+    double time_to_exp = 0.0; 
+    auto payoff_type = PayoffType::Call;    // auto payoff_type = 1; 
+    double rate = 0.05;
+    
+    double vol = 0.25;
+    
+    
+    //double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div = 0.0
+    // ITM Call at expiration (time_to_exp = 0);
+    BlackScholes bsc_itm_exp{strike, spot, time_to_exp, payoff_type, rate};
 
+    double value = bsc_itm_exp(vol);
+    std::cout << value;
 
 
     return 0;
