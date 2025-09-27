@@ -83,21 +83,80 @@ std::array<double, 2> BlackScholes::compute_norm_args_(double vol){
 
 int main(){
 
-    double strike = 75.0;
-    double spot = 100.0;
-    double time_to_exp = 0.0; 
-    auto payoff_type = PayoffType::Call;    // auto payoff_type = 1; 
-    double rate = 0.05;
-    
-    double vol = 0.25;
-    
-    
-    //double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div = 0.0
-    // ITM Call at expiration (time_to_exp = 0);
-    BlackScholes bsc_itm_exp{strike, spot, time_to_exp, payoff_type, rate};
+    // Variables that will store the user's choices. 
+    double strike, spot, time_to_exp, rate, vol, div;  
 
-    double value = bsc_itm_exp(vol);
-    std::cout << value;
+    std::string payoff_type_user_input; 
+    PayoffType payoff_type; 
+    
+
+
+    for(;;){
+
+            /* Menu */
+
+            std::cout << "What payoff type? (Call/Put):\n";
+            std::cin >> payoff_type_user_input;
+
+            if(payoff_type_user_input == "Call" || payoff_type_user_input == "call"){
+                payoff_type = PayoffType::Call;    // auto payoff_type = 1;
+            }
+            else if(payoff_type_user_input == "Put" || payoff_type_user_input == "put"){
+                payoff_type = PayoffType::Put;     // auto payoff_type = -1; 
+            }
+            else{
+                std::cout << "Invalid payoff type. Exiting.....";
+                break;
+            }
+
+
+            std::cout << "Enter a strike price:\n";
+            std::cin >> strike;
+
+
+            std::cout << "Enter a spot price:\n";
+            std::cin >> spot;
+
+
+            std::cout << "Enter an expiration time:\n"; 
+            std::cin >> time_to_exp;
+            
+            
+            std::cout << "Enter a rate\n";
+            std::cin >> rate;
+            
+
+            std::cout << "Enter a vol:\n";
+            std::cin >> vol; 
+
+
+            std::cout << "Enter a div:\n";
+            std::cin >> div; 
+
+
+            // Once we have all user inputs we create a BlackScholes object 
+            BlackScholes test{strike, spot, time_to_exp, payoff_type, rate, div};
+        } 
+
+    
+
+    
+
+    // double strike = 75.0;
+    // double spot = 100.0;
+    // double time_to_exp = 0.0; 
+    // auto payoff_type = PayoffType::Call;    // auto payoff_type = 1; 
+    // double rate = 0.05;
+    
+    // double vol = 0.25;
+    
+    
+    // //double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div = 0.0
+    // // ITM Call at expiration (time_to_exp = 0);
+    // BlackScholes bsc_itm_exp{strike, spot, time_to_exp, payoff_type, rate};
+
+    // double value = bsc_itm_exp(vol);
+    // std::cout << value;
 
 
     return 0;
