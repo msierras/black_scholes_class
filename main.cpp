@@ -84,9 +84,10 @@ std::array<double, 2> BlackScholes::compute_norm_args_(double vol){
 int main(){
 
     // Variables that will store the user's choices. 
-    double strike, spot, time_to_exp, rate, vol, div;
+    std::string strike_input, spot_input, time_to_exp_input, rate_input, vol_input, div_input;
 
-    std::string payoff_type_user_input; 
+
+    std::string payoff_type_input;
     PayoffType payoff_type; 
     
 
@@ -96,12 +97,12 @@ int main(){
             /* Menu */
 
             std::cout << "What payoff type? (Call/Put):\n";
-            std::cin >> payoff_type_user_input;
+            std::getline(std::cin, payoff_type_input);
 
-            if(payoff_type_user_input == "Call" || payoff_type_user_input == "call"){
+            if(payoff_type_input == "Call" || payoff_type_input == "call"){
                 payoff_type = PayoffType::Call;    // auto payoff_type = 1;
             }
-            else if(payoff_type_user_input == "Put" || payoff_type_user_input == "put"){
+            else if(payoff_type_input == "Put" || payoff_type_input == "put"){
                 payoff_type = PayoffType::Put;     // auto payoff_type = -1; 
             }
             else{
@@ -111,39 +112,45 @@ int main(){
 
 
             std::cout << "Enter a strike price:\n";
-            std::cin >> strike;
+            std::getline(std::cin, strike_input);
+            double strike = std::stod(strike_input);
+
 
 
             std::cout << "Enter a spot price:\n";
-            std::cin >> spot;
+            std::getline(std::cin, spot_input);
+            double spot = std::stod(spot_input);
 
 
-            std::cout << "Enter an expiration time:\n"; 
-            std::cin >> time_to_exp;
+            std::cout << "Enter an expiration time:\n";
+            std::getline(std::cin, time_to_exp_input);
+            double time_to_exp = std::stod(time_to_exp_input);
             
             
             std::cout << "Enter a rate\n";
-            std::cin >> rate;
+            std::getline(std::cin, rate_input);
+            double rate = std::stod(rate_input);
             
 
             std::cout << "Enter a vol:\n";
-            std::cin >> vol; 
+            std::getline(std::cin, vol_input);
+            double vol = std::stod(vol_input);
 
 
-            std::cout << "Enter dividend yield (or -1 to use default value 0.0):\n";
-            std::cin >> div; 
-
+            std::cout << "Enter dividend yield (or press Enter to use default value 0.0):\n";
+            std::getline(std::cin, div_input);
 
             // Once we have all user inputs we create a BlackScholes object
             
-            // If user enters -1 for default div value
-            if( div < 0.0 ){
-                BlackScholes test{strike, spot, time_to_exp, payoff_type, rate}; 
+            // If user enters a value
+            if( !(div_input.empty()) ){
+                double div = std::stod(div_input);
+                BlackScholes test{strike, spot, time_to_exp, payoff_type, rate, div};
 
                 // add calculations here later .........
             }
-            else{   // Else user types in their own div value 
-                BlackScholes test{strike, spot, time_to_exp, payoff_type, rate, div};
+            else{   // Else user presses Enter to use default dividend value of 0.0
+                BlackScholes test{strike, spot, time_to_exp, payoff_type, rate};
                 // add calculations here later .........
             }
 
