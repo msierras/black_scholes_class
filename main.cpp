@@ -20,7 +20,7 @@ class BlackScholes{
         double operator()(double vol);
 
         /* Accessor(s)/Getter(s) */
-        double get_div() const{ return div_};
+        double get_div() const{ return div_;}
 
     private:
         // Using trailing underscores for private member variables and private member functions.
