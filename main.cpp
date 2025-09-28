@@ -84,7 +84,7 @@ std::array<double, 2> BlackScholes::compute_norm_args_(double vol){
 int main(){
 
     // Variables that will store the user's choices. 
-    double strike, spot, time_to_exp, rate, vol, div;  
+    double strike, spot, time_to_exp, rate, vol, div;
 
     std::string payoff_type_user_input; 
     PayoffType payoff_type; 
@@ -130,12 +130,24 @@ int main(){
             std::cin >> vol; 
 
 
-            std::cout << "Enter a div:\n";
+            std::cout << "Enter dividend yield (or -1 to use default value 0.0):\n";
             std::cin >> div; 
 
 
-            // Once we have all user inputs we create a BlackScholes object 
-            BlackScholes test{strike, spot, time_to_exp, payoff_type, rate, div};
+            // Once we have all user inputs we create a BlackScholes object
+            
+            // If user enters -1 for default div value
+            if( div < 0.0 ){
+                BlackScholes test{strike, spot, time_to_exp, payoff_type, rate}; 
+
+                // add calculations here later .........
+            }
+            else{   // Else user types in their own div value 
+                BlackScholes test{strike, spot, time_to_exp, payoff_type, rate, div};
+                // add calculations here later .........
+            }
+
+            
         } 
 
     
