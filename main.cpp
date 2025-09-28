@@ -147,11 +147,38 @@ int main(){
                 double div = std::stod(div_input);
                 BlackScholes test{strike, spot, time_to_exp, payoff_type, rate, div};
 
-                // add calculations here later .........
+                double value = test(vol);
+
+                /* WIP */
+                std::cout << "\n==== Black-Scholes Result ====\n";
+                std::cout << (payoff_type == PayoffType::Call ? "Call Option" : "Put Option") << "\n";
+                std::cout << "Strike = " << strike
+                          << ", Spot = " << spot
+                          << ", T = " << time_to_exp
+                          << ", r = " << rate
+                          << ", q = " << (div_input.empty() ? 0.0 : std::stod(div_input))
+                          << ", vol = " << vol << "\n";
+                std::cout << "Price = " << value << "\n";
+                std::cout << "=============================\n";
             }
             else{   // Else user presses Enter to use default dividend value of 0.0
                 BlackScholes test{strike, spot, time_to_exp, payoff_type, rate};
-                // add calculations here later .........
+
+
+                /* WIP */
+                double value = test(vol);
+
+                std::cout << "\n==== Black-Scholes Result ====\n";
+                std::cout << (payoff_type == PayoffType::Call ? "Call Option" : "Put Option") << "\n";
+                std::cout << "Strike = " << strike
+                          << ", Spot = " << spot
+                          << ", T = " << time_to_exp
+                          << ", r = " << rate
+                          << ", q = " << (div_input.empty() ? 0.0 : std::stod(div_input))
+                          << ", vol = " << vol << "\n";
+                std::cout << "Price = " << value << "\n";
+                std::cout << "=============================\n";
+
             }
 
             
