@@ -189,24 +189,5 @@ int main(){
 
 
 
-
-
-    // double strike = 75.0;
-    // double spot = 100.0;
-    // double time_to_exp = 0.0;
-    // auto payoff_type = PayoffType::Call;    // auto payoff_type = 1;
-    // double rate = 0.05;
-
-    // double vol = 0.25;
-
-
-    // //double strike, double spot, double time_to_exp, PayoffType payoff_type, double rate, double div = 0.0
-    // // ITM Call at expiration (time_to_exp = 0);
-    // BlackScholes bsc_itm_exp{strike, spot, time_to_exp, payoff_type, rate};
-
-    // double value = bsc_itm_exp(vol);
-    // std::cout << value;
-
-
     return 0;
 }
