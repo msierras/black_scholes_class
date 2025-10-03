@@ -22,6 +22,27 @@ class BlackScholes{
         /* Accessor(s)/Getter(s) */
         double get_div() const{ return div_;}
 
+        /* Public member function(s) */
+        // show_result will show the result of the BlackScholes calculation. 
+        void show_result(double vol){
+            /*
+                *this refers to the dereferenced BlachScholes object itself. So, this code is saying "use the current object's parameters and evaluate 
+                the BlackScholes formula with votality vol"
+            */ 
+            double value = (*this)(vol);    // calls operator() to compute price. 
+
+            std::cout << "\n==== Black-Scholes Result ====\n";
+            std::cout << (payoff_type_ == PayoffType::Call ? "Call Option" : "Put Option") << "\n";
+            std::cout << "Strike = " << strike_
+                      << ", Spot = " << spot_
+                      << ", T = " << time_to_exp_
+                      << ", r = " << rate_
+                      << ", q = " << div_
+                      << ", vol = " << vol << "\n";
+            std::cout << "Price = " << value << "\n";
+            std::cout << "=============================\n";
+        }
+
     private:
         // Using trailing underscores for private member variables and private member functions.
 
@@ -119,7 +140,6 @@ int main(){
             double strike = std::stod(strike_input);
 
 
-
             std::cout << "Enter a spot price:\n";
             std::getline(std::cin, spot_input);
             double spot = std::stod(spot_input);
@@ -150,43 +170,15 @@ int main(){
                 double div = std::stod(div_input);
                 BlackScholes test{strike, spot, time_to_exp, payoff_type, rate, div};
 
-                double value = test(vol);
-
-                /* WIP */
-                std::cout << "\n==== Black-Scholes Result ====\n";
-                std::cout << (payoff_type == PayoffType::Call ? "Call Option" : "Put Option") << "\n";
-                std::cout << "Strike = " << strike
-                          << ", Spot = " << spot
-                          << ", T = " << time_to_exp
-                          << ", r = " << rate
-                          << ", q = " << div
-                          << ", vol = " << vol << "\n";
-                std::cout << "Price = " << value << "\n";
-                std::cout << "=============================\n";
+                test.show_result(vol);
             }
             else{   // Else user presses Enter to use default dividend value of 0.0
                 BlackScholes test{strike, spot, time_to_exp, payoff_type, rate};
 
-
-                /* WIP */
-                double value = test(vol);
-
-                std::cout << "\n==== Black-Scholes Result ====\n";
-                std::cout << (payoff_type == PayoffType::Call ? "Call Option" : "Put Option") << "\n";
-                std::cout << "Strike = " << strike
-                          << ", Spot = " << spot
-                          << ", T = " << time_to_exp
-                          << ", r = " << rate
-                          << ", q = " << test.get_div()
-                          << ", vol = " << vol << "\n";
-                std::cout << "Price = " << value << "\n";
-                std::cout << "=============================\n";
-
+                test.show_result(vol);
             }
 
-
         }
-
 
 
     return 0;
